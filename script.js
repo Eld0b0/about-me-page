@@ -7,6 +7,25 @@ document.querySelectorAll('.nav-links a[href^="#"]').forEach((link) => {
   });
 });
 
+const factorA = document.getElementById("factor-a");
+const factorB = document.getElementById("factor-b");
+const calcResult = document.getElementById("calc-result");
+
+function updateProduct() {
+  const a = parseFloat(factorA.value);
+  const b = parseFloat(factorB.value);
+
+  if (Number.isNaN(a) || Number.isNaN(b)) {
+    calcResult.textContent = "Result: —";
+    return;
+  }
+
+  const product = a * b;
+  calcResult.textContent = `Result: ${Number(product.toFixed(6))}`;
+}
+
+[factorA, factorB].forEach((input) => input.addEventListener("input", updateProduct));
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
